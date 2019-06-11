@@ -46,7 +46,7 @@ set(MyProject_INCLUDE_DIR ${CMAKE_INSTALL_PREFIX}/include)
 message(STATUS "Setting MyProject_INCLUDE_DIR: ${MyProject_INCLUDE_DIR}")
 
 # Make the config file
-configure_package_config_file(MyProjectConfig.cmake.in MyProject.cmake INSTALL_DESTINATION lib/cmake/MyProject PATH_VARS MyProject_INCLUDE_DIR)
+configure_package_config_file(MyProjectConfig.cmake.in MyProjectConfig.cmake INSTALL_DESTINATION lib/cmake/MyProject PATH_VARS MyProject_INCLUDE_DIR)
 
 # Make the version file
 write_basic_package_version_file(
