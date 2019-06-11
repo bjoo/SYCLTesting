@@ -41,9 +41,10 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include DESTINATION ${CMAKE_INSTAL
 # Install the generated headers
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/myproj_config.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/)
 
-# Set some variables to export
+# Set some variables to export to the config file if not already set
 set(MyProject_INCLUDE_DIR ${CMAKE_INSTALL_PREFIX}/include)
 message(STATUS "Setting MyProject_INCLUDE_DIR: ${MyProject_INCLUDE_DIR}")
+
 # Make the config file
 configure_package_config_file(MyProjectConfig.cmake.in MyProject.cmake INSTALL_DESTINATION lib/cmake/MyProject PATH_VARS MyProject_INCLUDE_DIR)
 
@@ -56,5 +57,9 @@ write_basic_package_version_file(
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/MyProjectVersion.cmake ${CMAKE_CURRENT_BINARY_DIR}/MyProjectConfig.cmake DESTINATION lib/cmake/MyProject)
 
+
+install(EXPORT MyProjectTargets NAMESPACE MyProject:: DESTINATION lib/cmake/MyProject )
+
 # Export stuff
 # This remains a mystery
+export(PACKAGE MyProject)
