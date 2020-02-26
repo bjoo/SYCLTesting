@@ -13,6 +13,7 @@ include(CMakePackageConfigHelpers)
 # Remember to change the file names
 configure_file(include/sycl_tests_config.h.cmake.in include/sycl_tests_config.h)
 
+add_subdirectory(extern/kokkos)
 #Make tests here
 add_subdirectory(test)
 
@@ -41,7 +42,7 @@ write_basic_package_version_file(
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/SYCLTestsVersion.cmake ${CMAKE_CURRENT_BINARY_DIR}/SYCLTestsConfig.cmake DESTINATION lib/cmake/SYCLTests)
 
 
-install(EXPORT SYCLTestsTargets NAMESPACE SYCLTests:: DESTINATION lib/cmake/SYCLTests )
+#install(EXPORT SYCLTestsTargets NAMESPACE SYCLTests:: DESTINATION lib/cmake/SYCLTests )
 
 # Export stuff
 # This remains a mystery
