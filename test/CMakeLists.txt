@@ -23,7 +23,7 @@ macro(package_add_test TESTNAME)
     add_executable(${TESTNAME} ${ARGN})
 
     # Add on the gtest libs
-    target_link_libraries(${TESTNAME} mylib gtest gmock gtest_main)
+    target_link_libraries(${TESTNAME} gtest gmock gtest_main)
 
     # Add the test to CTest
     add_test(NAME ${TESTNAME} COMMAND ${TESTNAME})
@@ -34,4 +34,4 @@ endmacro()
 
 # Here TESTNAME is test1
 # and ARGN is test1.cpp
-package_add_test(test1 test1.cpp)
+package_add_test(sycl_usm_tests sycl_usm_tests.cpp)
