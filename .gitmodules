@@ -3,4 +3,4 @@
 	url = https://github.com/google/googletest.git
 [submodule "extern/kokkos"]
 	path = extern/kokkos
-	url = https://gitub.com/nliber/kokkos
+	url = https://github.com/nliber/kokkos
