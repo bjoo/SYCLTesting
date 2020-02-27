@@ -22,13 +22,6 @@ TEST(TestKokkos, CreateDynamicExtent)
 	View<float*, Experimental::SYCLHostUSMSpace> a("a",1024);
 }
 
-struct dumb_functor
-{
-	View<float*, Experimental::SYCLHostUSMSpace> a_;
-	void operator()(const int i) const {
-		a_(i) *= static_cast<float>(2);
-	}
-};
 
 TEST(TestKokkos, ParallelFor)
 {
@@ -37,11 +30,13 @@ TEST(TestKokkos, ParallelFor)
 		a(i)=static_cast<float>(i);
 	}
 
-	dumb_functor f={a};
 
-	parallel_for(1024,f);
 
-//	for(int i=0; i < 1024; ++i) {
-//		ASSERT_FLOAT_EQ( a(i), static_cast<float>(2*i) );
-//	}
+	parallel_for(1024,KOKKOS_LAMBDA(const int i){
+		 a(i) *= static_cast<float>(2);
+	});
+
+	for(int i=0; i < 1024; ++i) {
+		ASSERT_FLOAT_EQ( a(i), static_cast<float>(2*i) );
+	}
 }
